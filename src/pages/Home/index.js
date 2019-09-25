@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { formatPrice } from '../../Util/format';
 import api from '../../services/api';
 
 import { ProductList } from './styles';
 
-export default class Home extends Component {
+class Home extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,6 +25,17 @@ export default class Home extends Component {
     this.setState({ products: data });
   }
 
+  handleAddToCart = product => {
+    const { dispatch } = this.props;
+    // default fuction comming from props, after inserted connect() function
+
+    dispatch({
+      type: 'ADD_TO_CART', // give a name to the action
+      product, // pass the params to be inserted into the reducers.
+    });
+    // all reducer will be able to see this action
+  };
+
   render() {
     const { products } = this.state;
 
@@ -34,7 +46,7 @@ export default class Home extends Component {
             <img src={product.image} alt={product.title} />
             <strong>{product.title}</strong>
             <span>{product.priceFormatted}</span>
-            <button type="button">
+            <button type="button" onClick={() => this.handleAddToCart(product)}>
               <div>
                 <MdAddShoppingCart size={16} color="#fff" /> x
               </div>
@@ -46,3 +58,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default connect()(Home);

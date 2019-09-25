@@ -1,8 +1,10 @@
 # WebPage using ReactJS E
 ### Project Meaning
-Create a WebPage using learn about Flux Architecture on React Environment.
+Create a WebPage to learn about Flux Architecture on React Environment.
 
 ----
+## Header
+--
 ## Main page
 --
 ## Cart page
