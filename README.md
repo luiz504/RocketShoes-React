@@ -13,6 +13,20 @@ Create a WebPage using learn about Flux Architecture on React Environment.
 
 > react-router-dom
 
+> styled-components
+
+> react-icons
+
+> polished
+
+> json-server (global)
+
+> axios
+
+> redux
+
+> react-redux
+
 ### Code STD
 > Eslist (AIRBNB)
 
