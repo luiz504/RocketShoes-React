@@ -1,8 +1,10 @@
 # WebPage using ReactJS E
 ### Project Meaning
-Create a WebPage using learn about Flux Architecture on React Environment.
+Create a WebPage to learn about Flux Architecture on React Environment.
 
 ----
+## Header
+--
 ## Main page
 --
 ## Cart page
@@ -26,6 +28,14 @@ Create a WebPage using learn about Flux Architecture on React Environment.
 > redux
 
 > react-redux
+
+> reactotron-react-js
+
+> reactotron-redux
+
+> proto-types
+
+> immer
 
 ### Code STD
 > Eslist (AIRBNB)
