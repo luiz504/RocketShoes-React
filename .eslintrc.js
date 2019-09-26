@@ -31,6 +31,9 @@ module.exports = {
       { extensions:['.jsx', '.js'] }
      ],
      'import/prefer-default-export': 'off',
-     'jsx-a11y/control-has-associated-label': 'off'
+     'jsx-a11y/control-has-associated-label': 'off',
+     'no-console': 'off',
+     'no-param-reassign': 'off'
+
   },
 };

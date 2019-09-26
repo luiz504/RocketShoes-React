@@ -29,6 +29,14 @@ Create a WebPage to learn about Flux Architecture on React Environment.
 
 > react-redux
 
+> reactotron-react-js
+
+> reactotron-redux
+
+> proto-types
+
+> immer
+
 ### Code STD
 > Eslist (AIRBNB)
 

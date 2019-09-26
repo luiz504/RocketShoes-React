@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { MdAdd, MdRemove, MdDeleteForever } from 'react-icons/md';
 
 import { Container, ProductTable, Total } from './styles';
 
-export default function Cart() {
+function Cart({ cart, dispatch }) {
   return (
     <Container>
       <ProductTable>
@@ -18,37 +19,41 @@ export default function Cart() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <img
-                src="https://image-cdn.hypb.st/http%3A%2F%2Fs3.store.hypebeast.com%2Fmedia%2Fimage%2F2d%2F82%2FShoes_6_4-5cd57f665351358744a16753f568.jpg?q=60&w=460&fit=max&v=1"
-                alt="Sneakers"
-              />
-            </td>
-            <td>
-              <strong> Nike React Langa</strong>
-              <span>USD 350,00</span>
-            </td>
-            <td>
-              <div>
-                <button type="button">
-                  <MdAdd size={20} color="#7159c1" />
+          {cart.map(product => (
+            <tr>
+              <td>
+                <img src={product.image} alt={product.title} />
+              </td>
+              <td>
+                <strong>{product.title}</strong>
+                <span>{product.priceFormatted}</span>
+              </td>
+              <td>
+                <div>
+                  <button type="button">
+                    <MdAdd size={20} color="#7159c1" />
+                  </button>
+                  <input type="number" readOnly value={product.amount} />
+                  <button type="button">
+                    <MdRemove size={20} color="#7159c1" />
+                  </button>
+                </div>
+              </td>
+              <td>
+                <strong> USD 700,00</strong>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  onClick={() =>
+                    dispatch({ type: 'REMOVE_FROM_CART', id: product.id })
+                  }
+                >
+                  <MdDeleteForever size={20} color="#7159c1" />
                 </button>
-                <input type="number" readOnly value={2} />
-                <button type="button">
-                  <MdRemove size={20} color="#7159c1" />
-                </button>
-              </div>
-            </td>
-            <td>
-              <strong> USD 700,00</strong>
-            </td>
-            <td>
-              <button type="button">
-                <MdDeleteForever size={20} color="#7159c1" />
-              </button>
-            </td>
-          </tr>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </ProductTable>
       <footer>
@@ -61,3 +66,8 @@ export default function Cart() {
     </Container>
   );
 }
+const mapStateToProps = state => ({
+  cart: state.cart,
+  cartSize: state.cart.length,
+});
+export default connect(mapStateToProps)(Cart);
