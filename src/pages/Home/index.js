@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { MdAddShoppingCart } from 'react-icons/md';
 
 import { formatPrice } from '../../Util/format';
 import api from '../../services/api';
+import * as CartActions from '../../store/modules/cart/actions';
 
 import { ProductList } from './styles';
 
@@ -27,14 +29,9 @@ class Home extends Component {
   }
 
   handleAddToCart = product => {
-    const { dispatch } = this.props;
-    // default fuction comming from props, after inserted connect() function
+    const { addToCart } = this.props;
 
-    dispatch({
-      type: 'ADD_TO_CART', // give a name to the action
-      product, // pass the params to be inserted into the reducers.
-    });
-    // all reducer will be able to see this action
+    addToCart(product);
   };
 
   render() {
@@ -60,5 +57,10 @@ class Home extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
 
-export default connect()(Home);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Home);
