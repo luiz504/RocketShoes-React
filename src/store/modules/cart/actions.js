@@ -11,3 +11,11 @@ export function RmFromCart(id) {
     id,
   };
 }
+
+export function updateAmount(id, amount) {
+  return {
+    type: '@cart/Update',
+    id,
+    amount,
+  };
+}
