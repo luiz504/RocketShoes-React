@@ -1,22 +1,41 @@
-import { call, put, all, takeLatest } from 'redux-saga/effects';
-// Call - deal with async methods that return promises. (api.get)
-// Put - trigger an action into the middleware
-// all- run multi tasks at parallel (Promise #all)
-// takeLatest - multi click during request recognize only one.
-// taleEvery - recognize all clicks during the request.
+import { call, select, put, all, takeLatest } from 'redux-saga/effects';
+// select this effect enables work with reducer state
+
 import api from '../../../services/api';
-import { addToCartSucess } from './actions';
+import { formatPrice } from '../../../Util/format';
+
+import { addToCartSucess, updateAmount } from './actions';
 
 function* addToCart({ id }) {
-  // this response atm receive the product data coming from API
-  const response = yield call(api.get, `/products/${id}`);
-  // 1° param declare the request method.
-  // 2°+ params the params usually passed inside the api.get()
+  const productExists = yield select(state =>
+    state.cart.find(p => p.id === id)
+  );
 
-  yield put(addToCartSucess(response.data));
-  // trigger this action
+  const stock = yield call(api.get, `/stock/${id}`);
+
+  const stockAmount = stock.data.amount;
+  const currentAmount = productExists ? productExists.amount : 0;
+
+  const amount = currentAmount + 1;
+
+  if (amount > stockAmount) {
+    console.tron.warn('error estoque');
+    return;
+  }
+
+  if (productExists) {
+    yield put(updateAmount(id, amount));
+  } else {
+    const response = yield call(api.get, `/products/${id}`);
+
+    const data = {
+      ...response.data,
+      amount: 1,
+      priceFormatted: formatPrice(response.data.price),
+    };
+
+    yield put(addToCartSucess(data));
+  }
 }
 
 export default all([takeLatest('@cart/ADD_REQ', addToCart)]);
-// 1° param - the heard action.
-// 2° param - witch function you want trigger.
