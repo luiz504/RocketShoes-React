@@ -37,6 +37,8 @@ Create a WebPage to learn about Flux Architecture on React Environment.
 
 > immer
 
+> redux-saga
+
 ### Code STD
 > Eslist (AIRBNB)
 
