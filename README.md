@@ -9,7 +9,7 @@ Create a WebPage to learn about Flux Architecture on React Environment.
 - [x] Cart icon + onclick(Navigate to Cart page) + reflect different types of items in cart.
 
 ## Main page
-- [x] Render the Product as a grid list.
+- [x] Render the products as a grid list.
 - [x] Each product should contain img, title, price, 'ADD TO CART' button.
 - [x] 'ADD TO CART' button should reflect how many this product already in cart.
 - [x] Stock Validation - Can't add more product than the available stock.
