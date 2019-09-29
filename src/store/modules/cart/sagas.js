@@ -1,10 +1,12 @@
 import { call, select, put, all, takeLatest } from 'redux-saga/effects';
-// select this effect enables work with reducer state
+
+import { toast } from 'react-toastify';
 
 import api from '../../../services/api';
+// import history from '../../../services/history';
 import { formatPrice } from '../../../Util/format';
 
-import { addToCartSucess, updateAmount } from './actions';
+import { addToCartSucess, updateAmountSuccess } from './actions';
 
 function* addToCart({ id }) {
   const productExists = yield select(state =>
@@ -19,12 +21,12 @@ function* addToCart({ id }) {
   const amount = currentAmount + 1;
 
   if (amount > stockAmount) {
-    console.tron.warn('error estoque');
+    toast.error('The quantity exceed the stock');
     return;
   }
 
   if (productExists) {
-    yield put(updateAmount(id, amount));
+    yield put(updateAmountSuccess(id, amount));
   } else {
     const response = yield call(api.get, `/products/${id}`);
 
@@ -35,7 +37,22 @@ function* addToCart({ id }) {
     };
 
     yield put(addToCartSucess(data));
+    // history.push('/cart');
   }
 }
+function* updateAmount({ id, amount }) {
+  if (amount <= 0) return;
 
-export default all([takeLatest('@cart/ADD_REQ', addToCart)]);
+  const stock = yield call(api.get, `/stock/${id}`);
+  const stockAmount = stock.data.amount;
+
+  if (amount > stockAmount) {
+    toast.error('The quantity exceed the stock');
+    return;
+  }
+  yield put(updateAmountSuccess(id, amount));
+}
+export default all([
+  takeLatest('@cart/ADD_REQ', addToCart),
+  takeLatest('@cart/UPDATE_AMOUNT_REQ', updateAmount),
+]);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Proptypes from 'prop-types';
 
 import { MdAdd, MdRemove, MdDeleteForever } from 'react-icons/md';
 import { formatPrice } from '../../Util/format';
@@ -8,13 +9,13 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 import { Container, ProductTable, Total } from './styles';
 
-function Cart({ total, cart, RmFromCart, updateAmount }) {
+function Cart({ total, cart, RmFromCart, updateAmountRequest }) {
   function increment(product) {
-    updateAmount(product.id, product.amount + 1);
+    updateAmountRequest(product.id, product.amount + 1);
   }
 
   function decrement(product) {
-    updateAmount(product.id, product.amount - 1);
+    updateAmountRequest(product.id, product.amount - 1);
   }
 
   return (
@@ -91,3 +92,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Cart);
+
+Cart.propTypes = {
+  total: Proptypes.string.isRequired,
+  cart: Proptypes.shape().isRequired,
+  RmFromCart: Proptypes.func.isRequired,
+  updateAmountRequest: Proptypes.func.isRequired,
+};

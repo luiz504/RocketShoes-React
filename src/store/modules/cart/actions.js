@@ -18,9 +18,16 @@ export function RmFromCart(id) {
   };
 }
 
-export function updateAmount(id, amount) {
+export function updateAmountRequest(id, amount) {
   return {
-    type: '@cart/Update',
+    type: '@cart/UPDATE_AMOUNT_REQ',
+    id,
+    amount,
+  };
+}
+export function updateAmountSuccess(id, amount) {
+  return {
+    type: '@cart/Update_AMOUNT_SUCESS',
     id,
     amount,
   };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MdAddShoppingCart } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 import { formatPrice } from '../../Util/format';
 import api from '../../services/api';
@@ -19,6 +20,9 @@ class Home extends Component {
 
   async componentDidMount() {
     const response = await api.get('products');
+    const Props = this.props;
+    console.log(Props);
+    console.tron.log(this.props);
 
     const data = await response.data.map(product => ({
       ...product,
@@ -35,14 +39,19 @@ class Home extends Component {
   };
 
   render() {
-    const { products } = this.state;
+    const { products, hovered } = this.state;
     const { quantity } = this.props;
+    const xeru = this.props;
+    console.tron.log(xeru);
 
     return (
       <ProductList>
         {products.map(product => (
           <li key={product.id}>
-            <img src={product.image} alt={product.title} />
+            <img
+              src={hovered ? product.image2 : product.image}
+              alt={product.title}
+            />
             <strong>{product.title}</strong>
             <span>{product.priceFormatted}</span>
 
@@ -77,3 +86,8 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home);
+
+Home.propTypes = {
+  addToCartRequest: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
+};
