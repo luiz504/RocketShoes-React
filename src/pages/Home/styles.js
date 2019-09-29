@@ -7,14 +7,14 @@ export const ProductList = styled.ul`
   grid-gap: 20px;
   list-style: none;
 
-  li {
+  > li {
     display: flex;
     flex-direction: column;
     background: #e3e7ea;
     border-radius: 5px;
     padding: 20px;
 
-    img {
+    > img {
       align-self: center;
       max-width: 250px;
       max-height: 280px;

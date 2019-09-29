@@ -1,6 +1,12 @@
-export function addToCart(product) {
+export function addToCartRequest(id) {
   return {
-    type: '@cart/Add',
+    type: '@cart/ADD_REQ',
+    id,
+  };
+}
+export function addToCartSucess(product) {
+  return {
+    type: '@cart/ADD_SUCESS',
     product,
   };
 }
@@ -12,9 +18,16 @@ export function RmFromCart(id) {
   };
 }
 
-export function updateAmount(id, amount) {
+export function updateAmountRequest(id, amount) {
   return {
-    type: '@cart/Update',
+    type: '@cart/UPDATE_AMOUNT_REQ',
+    id,
+    amount,
+  };
+}
+export function updateAmountSuccess(id, amount) {
+  return {
+    type: '@cart/Update_AMOUNT_SUCESS',
     id,
     amount,
   };

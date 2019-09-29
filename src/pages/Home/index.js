@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MdAddShoppingCart } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 import { formatPrice } from '../../Util/format';
 import api from '../../services/api';
@@ -19,6 +20,9 @@ class Home extends Component {
 
   async componentDidMount() {
     const response = await api.get('products');
+    const Props = this.props;
+    console.log(Props);
+    console.tron.log(this.props);
 
     const data = await response.data.map(product => ({
       ...product,
@@ -28,26 +32,36 @@ class Home extends Component {
     this.setState({ products: data });
   }
 
-  handleAddToCart = product => {
-    const { addToCart } = this.props;
+  handleAddToCart = id => {
+    const { addToCartRequest } = this.props;
 
-    addToCart(product);
+    addToCartRequest(id);
   };
 
   render() {
-    const { products } = this.state;
+    const { products, hovered } = this.state;
+    const { quantity } = this.props;
+    const xeru = this.props;
+    console.tron.log(xeru);
 
     return (
       <ProductList>
         {products.map(product => (
           <li key={product.id}>
-            <img src={product.image} alt={product.title} />
+            <img
+              src={hovered ? product.image2 : product.image}
+              alt={product.title}
+            />
             <strong>{product.title}</strong>
             <span>{product.priceFormatted}</span>
 
-            <button type="button" onClick={() => this.handleAddToCart(product)}>
+            <button
+              type="button"
+              onClick={() => this.handleAddToCart(product.id)}
+            >
               <div>
-                <MdAddShoppingCart size={16} color="#fff" /> x
+                <MdAddShoppingCart size={16} color="#fff" />{' '}
+                {quantity[product.id] || 0}
               </div>
               <span> ADD TO CART </span>
             </button>
@@ -57,10 +71,23 @@ class Home extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  quantity: state.cart.reduce((amount, product) => {
+    amount[product.id] = product.amount;
+
+    return amount;
+  }, {}),
+});
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(CartActions, dispatch);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Home);
+
+Home.propTypes = {
+  addToCartRequest: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
+};
