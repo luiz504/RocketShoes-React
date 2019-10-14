@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { MdShoppingCart } from 'react-icons/md';
+import { MdShoppingBasket } from 'react-icons/md';
 
 import { Container, Cart } from './styles';
 
@@ -20,7 +20,7 @@ function Header({ cartSize }) {
           <strong>Your Shopping Cart</strong>
           <span>{cartSize} items</span>
         </div>
-        <MdShoppingCart size={36} color="#FFF" />
+        <MdShoppingBasket size={36} color="#FFF" />
       </Cart>
     </Container>
   );

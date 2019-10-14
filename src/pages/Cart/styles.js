@@ -65,6 +65,7 @@ export const ProductTable = styled.table`
       color: #666;
       padding: 6px;
       width: 50px;
+      text-align: right;
     }
   }
   button {
@@ -84,5 +85,18 @@ export const Total = styled.div`
   strong {
     font-size: 28px;
     margin-left: 5px;
+  }
+`;
+
+export const EmptyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  > p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 24px;
   }
 `;

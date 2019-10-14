@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
+import { ChasingDots } from 'styled-spinkit';
+import colors from '../../styles/color';
+
 export const ProductList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -10,7 +13,7 @@ export const ProductList = styled.ul`
   > li {
     display: flex;
     flex-direction: column;
-    background: #e3e7ea;
+    background: ${colors.whiteBase};
     border-radius: 5px;
     padding: 20px;
 
@@ -18,6 +21,7 @@ export const ProductList = styled.ul`
       align-self: center;
       max-width: 250px;
       max-height: 280px;
+      animation: ease 0.5s;
     }
 
     > strong {
@@ -70,3 +74,11 @@ export const ProductList = styled.ul`
     }
   }
 `;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 40vh;
+`;
+
+export const LoadingAnimation = styled(ChasingDots)``;
