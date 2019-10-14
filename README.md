@@ -15,9 +15,6 @@ Create a WebPage to learn about Flux Architecture on React Environment.
 - [x] Stock Validation - Can't add more product than the available stock.
 - [x] Send an alert after exceeding the max product availability.
 - [ ] List loading animation
-- [ ] Define the number of products to be rendered in each page.
-- [ ] Scroll down to load more items
-- [ ] Find the product field
 - [ ] Hover product switch product img
 
 
@@ -32,7 +29,7 @@ Create a WebPage to learn about Flux Architecture on React Environment.
 - [x] Stock Validation - Can't add more product than the available stock.
 - [x] Send an alert after exceeding the max product availability.
 - [ ] Empty cart msg
-- [ ] Table loading animation
+
 
 ----
 

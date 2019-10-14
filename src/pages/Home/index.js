@@ -2,56 +2,73 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MdAddShoppingCart } from 'react-icons/md';
+
 import PropTypes from 'prop-types';
+
+import colors from '../../styles/color';
 
 import { formatPrice } from '../../Util/format';
 import api from '../../services/api';
 import * as CartActions from '../../store/modules/cart/actions';
 
-import { ProductList } from './styles';
+import { ProductList, LoadingContainer, LoadingAnimation } from './styles';
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
       products: [],
+      loading: false,
+      houvered: null,
     };
   }
 
   async componentDidMount() {
+    this.setState({ loading: true });
+
     const response = await api.get('products');
-    const Props = this.props;
-    console.log(Props);
-    console.tron.log(this.props);
 
     const data = await response.data.map(product => ({
       ...product,
       priceFormatted: formatPrice(product.price),
     }));
 
-    this.setState({ products: data });
+    this.setState({ products: data, loading: false });
   }
 
   handleAddToCart = id => {
     const { addToCartRequest } = this.props;
 
-    addToCartRequest(id);
+    const load = true;
+
+    addToCartRequest(id, load);
+  };
+
+  handleHouver = id => {
+    this.setState({ houvered: id });
   };
 
   render() {
-    const { products, hovered } = this.state;
+    const { products, loading, houvered } = this.state;
     const { quantity } = this.props;
-    const xeru = this.props;
-    console.tron.log(xeru);
 
-    return (
+    return loading ? (
+      <LoadingContainer>
+        <LoadingAnimation color={colors.purple} s />
+      </LoadingContainer>
+    ) : (
       <ProductList>
         {products.map(product => (
           <li key={product.id}>
             <img
-              src={hovered ? product.image2 : product.image}
+              src={houvered === product.id ? product.image2 : product.image}
               alt={product.title}
+              onFocus={() => this.handleHouver(product.id)}
+              onMouseEnter={() => this.handleHouver(product.id)}
+              onMouseOut={() => this.handleHouver(null)}
+              onBlur={() => this.handleHouver(product.id)}
             />
+
             <strong>{product.title}</strong>
             <span>{product.priceFormatted}</span>
 
@@ -60,7 +77,7 @@ class Home extends Component {
               onClick={() => this.handleAddToCart(product.id)}
             >
               <div>
-                <MdAddShoppingCart size={16} color="#fff" />{' '}
+                <MdAddShoppingCart size={16} color="#fff" />
                 {quantity[product.id] || 0}
               </div>
               <span> ADD TO CART </span>
