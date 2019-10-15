@@ -50,21 +50,24 @@
     },
     {
       "id": 5,
-      "title": "Tênis VR Caminhada Confortável Detalhes Couro Masculino",
-      "price": 139.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg"
+      "title": "Tênis Nike Revolution 5 Masculino - Preto",
+      "price": 279.99,
+      "image": "https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/06/HZM-1731-006/HZM-1731-006_zoom2.jpg",
+      "image2": "https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/06/HZM-1731-006/HZM-1731-006_zoom1.jpg"
     },
     {
       "id": 6,
-      "title": "Tênis Adidas Duramo Lite 2.0",
-      "price": 219.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg"
+      "title": "Bota Coturno SapatoFran Zíper Masculino - Marrom",
+      "price": 119.90,
+      "image": "https://static.netshoes.com.br/produtos/bota-coturno-sapatofran-ziper-masculino/38/HAP-0022-138/HAP-0022-138_zoom3.jpg",
+      "image2": "https://static.netshoes.com.br/produtos/bota-coturno-sapatofran-ziper-masculino/38/HAP-0022-138/HAP-0022-138_zoom1.jpg"
     },
     {
       "id": 4,
-      "title": "Tênis de Caminhada Leve Confortável",
-      "price": 179.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg"
+      "title": "Tênis Nike Flex Motion Trainer Feminino - Pink e Cinza",
+      "price": 349.99,
+      "image": "https://static.netshoes.com.br/produtos/tenis-nike-flex-motion-trainer-feminino/99/HZM-1275-199/HZM-1275-199_zoom1.jpg",
+      "image2": "https://static.netshoes.com.br/produtos/tenis-nike-flex-motion-trainer-feminino/99/HZM-1275-199/HZM-1275-199_zoom2.jpg"
     }
 
   ]

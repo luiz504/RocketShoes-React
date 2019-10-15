@@ -22,18 +22,21 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react', 'prettier',
+    'react',
+    'prettier',
+    'react-hooks'
   ],
   rules: {
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
       'warn',
       { extensions:['.jsx', '.js'] }
-     ],
-     'import/prefer-default-export': 'off',
-     'jsx-a11y/control-has-associated-label': 'off',
-     'no-console': 'off',
-     'no-param-reassign': 'off'
-
+    ],
+    'import/prefer-default-export': 'off',
+    'no-console': ['error', {allow: ['tron'] }],
+    'no-param-reassign': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
+    'jsx-a11y/control-has-associated-label': 'off'
   },
 };
