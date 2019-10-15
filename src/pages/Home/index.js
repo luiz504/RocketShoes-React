@@ -106,5 +106,5 @@ export default connect(
 
 Home.propTypes = {
   addToCartRequest: PropTypes.func.isRequired,
-  quantity: PropTypes.number.isRequired,
+  quantity: PropTypes.objectOf(PropTypes.number).isRequired,
 };
