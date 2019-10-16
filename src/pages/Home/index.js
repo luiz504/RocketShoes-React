@@ -54,7 +54,7 @@ class Home extends Component {
 
     return loading ? (
       <LoadingContainer>
-        <LoadingAnimation color={colors.purple} s />
+        <LoadingAnimation color={colors.purple} size={60} />
       </LoadingContainer>
     ) : (
       <ProductList>
