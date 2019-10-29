@@ -32,9 +32,8 @@ Create a WebPage to learn about Flux Architecture on React Environment.
     * [react-redux](https://github.com/reduxjs/react-redux)
 
   * Debug Libs / Reactotron
-    *[reactotron-redux](https://github.com/infinitered/reactotron-redux)
-    *[reactotron-redux-saga](https://github.com/infinitered/reactotron/blob/master/docs/plugin-redux-saga.md)
-    *[reactotron-react-native](https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md)
+    * [reactotron-redux](https://github.com/infinitered/reactotron-redux)
+    * [reactotron-redux-saga](https://github.com/infinitered/reactotron/blob/master/docs/plugin-redux-saga.md)
 
 ## API [Json-Server](https://github.com/typicode/json-server)
 
